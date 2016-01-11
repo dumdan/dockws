@@ -30,10 +30,11 @@ _Except..._ **that** doesn't always work very well:
 
 ***Before trying*** anything, please keep in mind **this whole setup is introducing its own changes**. Here are the ones I became aware of, up to now:
 
-1. I am ___very biased___ toward the "Red Hat family" of distributions and everything you see here has been tested on Fedora (usually, latest) or the latest releases of RHEL or CentOS. The reason for the "latest" has (or may have) to do with capabilities found in the kernels;
 1. the "SELinux context" of your __home directory__ will change to __`svirt_sandbox_file_t`__;
 2. the **only** communication between the application and the environment (for example, _the desktop manager_) is restricted to the _environment variables_ and _command line arguments_ (for the time being, at least);
+3. no "packaging" - it may be less-than-simple, due to the customizations done at "container-build time"
 
 Finally,  
-My main job is quite apart from this activity, hence the amount of time I can dedicate to this project is not guaranteed... (no, I do _not_ think I am unique in this regard).
+I am ___very biased___ toward the "Red Hat family" of distributions and everything you see here has been tested on Fedora (usually, latest) or the latest releases of RHEL or CentOS. The reason for the "latest" has (or may have) to do with capabilities found in the kernels;  
+Also, my main job is quite apart from this activity, hence the amount of time I can dedicate to this project is not guaranteed... (no, I do _not_ think I am unique in this regard).
 
