@@ -93,8 +93,6 @@ When finished, you should be able to see the new image in the local Docker cache
 ```
 [<username>@<hostname> ~]$ docker images
 REPOSITORY                  TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-<username>/f23_libreoffice  5042                60991797bb8a        2 hours ago         1.019 GB
-<none>                      <none>              9a1006ccea2d        6 hours ago         205.7 MB
 <username>/f23              latest              3129cde806e2        6 hours ago         352 MB
 <none>                      <none>              62e7ea3bf76c        9 days ago          352.3 MB
 docker.io/fedora            latest              597717fc21bd        7 weeks ago         204 MB
