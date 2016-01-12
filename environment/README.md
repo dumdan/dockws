@@ -67,7 +67,7 @@ Of course, for RHEL and CentOS, **dnf** changes to **yum**, in the `Dockerfile`,
    [<username>@<hostname> ~]$ vim Dockerfile
    ```
 ---- [Dockerfile](f23/Dockerfile) contents, in the **f23** directory ----  
-(**Please** don't forget to change _"Your Name"_ with the actual name and 
+(**Please** don't forget to change _"Your Name"_ and _"your email address"_ with the actual values)
 ```
 FROM fedora
 MAINTAINER Your Name <your email address>
