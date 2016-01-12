@@ -4,8 +4,8 @@
 target=${1}
 target="${target:=libreoffice}"
 baseOsName="f23"
-fullName="Daniel Dumitriu"
-email="daniel@dumdan.com"
+fullName="Your Name"
+email="email@domain.tld"
 
 myGid=$(id -g)
 myUid=$(id -u)
@@ -17,7 +17,7 @@ pushd ${target} >/dev/null 2>&1 || { \
 cat << EOF > Dockerfile
 FROM ${myName}/${baseOsName}
 MAINTAINER ${fullName} <${email}>
-RUN dnf install -y libreoffice && \
+RUN dnf install -y libreoffice && 
 	dnf clean all
 
 COPY zz-dd-colorls.sh /etc/profile.d/
