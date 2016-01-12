@@ -43,24 +43,6 @@ Just to give you an idea of the (possible) directory & file hierarchy which we a
 
 ![dir. tree](../tree01.png)
 
-**./**  
-├── README.md  
-├── **f23/** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <-- the local Fedora image build directory  
-│ &nbsp; &nbsp; &nbsp; ├── Dockerfile  
-│ &nbsp; &nbsp; &nbsp; └── zz-dd-colorls.sh  
-├── **mkdf-loff.sh** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _<-- an **example** script that creates_    
-│ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; _the Dockerfile for "libreoffice"_  
-├── **libreoffice/** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <-- the Libre Office image build directory  
-│ &nbsp; &nbsp; &nbsp;└── Dockerfile  
-\- \- \-  
-│  
-├── **\<future application directrories>/**  
-\- \- \-  
-└── **usr-local-bin/** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <-- the commands to run your containerized applications  
- &nbsp; &nbsp; &nbsp; &nbsp; └── libreoffice.sh
- 
-_(apologies for the weird-looking "ascii art")_
-
 
 ## Build your own - ***local*** - Fedora Docker image:
 Of course, for RHEL and CentOS, **dnf** changes to **yum**, in the `Dockerfile`, below.
