@@ -1,4 +1,5 @@
-﻿# Set-up your environment
+***(Work in progress)***
+# Set-up your environment
 Summary:
 - [Install Docker](#Install Docker)
 - [Convenient Docker](#Convenient Docker) command access
@@ -100,5 +101,6 @@ docker.io/fedora            latest              597717fc21bd        7 weeks ago 
 ```
 (The actual listing will look a little different, but you get the idea)
 
+***(To be continued...)***
 
 
