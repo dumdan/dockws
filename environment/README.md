@@ -1,10 +1,10 @@
 ﻿***(Work in progress)***
 # Set-up your environment
 Summary:
-- [Install Docker](#Install Docker)
-- [Convenient Docker](#Convenient Docker) command access
-- [Target directory tree](#Target directory tree)
-- [Build your own](#Build your own) Fedora Docker image
+- [Install Docker](#install-docker)
+- [Convenient Docker](#Convenient-Docker) command access
+- [Target directory tree](#Target-directory-tree)
+- [Build your own](#Build-your-own) Fedora Docker image
 
 ## Install Docker - unless already done
 Use **dnf** (Fedora) or **yum** (RHEL, CentOS), as appropriate:  
@@ -45,7 +45,7 @@ Just to give you an idea of the (possible) directory & file hierarchy which we a
 
 
 ## Build your own - ***local*** - Fedora Docker image:
-Of course, for RHEL and CentOS, **dnf** changes to **yum**, in the `Dockerfile`, below.
+Of course, for RHEL and CentOS, you should substitute **dnf** by **yum**, in the `Dockerfile`, below.
    ```
    [<username>@<hostname> ~]$ mkdir f23
    [<username>@<hostname> ~]$ cd f23
