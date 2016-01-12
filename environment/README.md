@@ -54,7 +54,7 @@ Just to give you an idea of the (possible) directory & file hierarchy which we a
 │  
 ├── **\<future application directrories>/**  
 \- \- \-  
-└── **usr-local-bin/** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <-- the commands to run you containerized applications  
+└── **usr-local-bin/** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <-- the commands to run your containerized applications  
  &nbsp; &nbsp; &nbsp; &nbsp; └── libreoffice.sh
  
 _(apologies for the weird-looking "ascii art")_
