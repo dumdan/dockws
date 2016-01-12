@@ -1,4 +1,4 @@
-***(Work in progress)***
+﻿***(Work in progress)***
 # Set-up your environment
 Summary:
 - [Install Docker](#Install Docker)
@@ -68,7 +68,7 @@ CMD ["sleep", "infinity"]
 ```
 Now, for the **actual build** (you're still, in the "f23" directory):
    ```
-   [<username>@<hostname> ~]$ docker build -t <your username>/f23 .
+   [<username>@<hostname> ~]$ docker build -t <username>/f23 .
    ```
 ***Please, note*** the **dot** at the end of that command. It _is_ important !  
 (You do not, really, have to prefix the image with your **\<username\>**, but you **should** do something of that kind - please, see the docs for details)
@@ -83,8 +83,71 @@ REPOSITORY                  TAG                 IMAGE ID            CREATED     
 docker.io/fedora            latest              597717fc21bd        7 weeks ago         204 MB
 [<username>@<hostname> ~]$ 
 ```
-(The actual listing will look a little different, but you get the idea)
+The actual listing will look a little different... but you get the idea. Here's what it was in ***my case:***
+```
+REPOSITORY                TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+daniel/f23                latest              3129cde806e2        23 hours ago        352 MB
+<none>                    <none>              62e7ea3bf76c        9 days ago          352.3 MB
+docker.io/fedora          latest              597717fc21bd        7 weeks ago         204 MB
+[daniel@oryxdd ~]$ 
+```
 
-***(To be continued...)***
+## The application image
+And, of course, I had to choose a pretty _"heavy"_ application... ***Libre Office !***  
+(#sarcasm))
+
+To build the image, please **customize** (fill-in your specific details) the script [**`mkdf-loff.sh`**](./mkdf-loff.sh)
+```
+#!/bin/bash
+#
+
+target=${1}
+target="${target:=libreoffice}"
+baseOsName="f23"
+fullName="Your Name"
+email="email@domain.tld"
+
+myGid=$(id -g)
+myUid=$(id -u)
+myName=$(id -un)
+
+pushd ${target} >/dev/null 2>&1 || { \
+	echo -e "Directory Not Found - \"${target}\" x21 Exiting..."; \
+	exit 1 ; }
+cat << EOF > Dockerfile
+FROM ${myName}/${baseOsName}
+MAINTAINER ${fullName} <${email}>
+RUN dnf install -y libreoffice && 
+	dnf clean all
+
+COPY zz-dd-colorls.sh /etc/profile.d/
+RUN groupadd -g ${myGid} ${myName} && \
+	useradd -g ${myGid} -u ${myUid} \
+	-d /home/${myName} -s /bin/bash \
+	-c "${fullName}" ${myName}
+
+USER ${myName}
+ENTRYPOINT ["/usr/bin/libreoffice"]
+EOF
+```
+and, of course, run it:
+```
+[<username>@<hostname> ~]$ ./mkdf-loff.sh
+```
+This will result in the generation of the file [**f23/Dockerfile**](f23/Dockerfile).
+
+Finally, **let's build that image:**
+```
+   [<username>@<hostname> ~]$ docker build -t <username>/f23_libreoffice:5042 libreoffice
+```
+
+You will notice that, this time, the build command is a little different:
+- the "build directory" is mentioned explicitly (`libreoffice`)
+- the image name has the complete form:  
+    ```
+    <repo-name>/<image-name>:<tag>
+    ```  
+    (it so happens that the LibreOffice version is "5.0.42" !)
+
 
 
