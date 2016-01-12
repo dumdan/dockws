@@ -38,5 +38,5 @@ Finally,
 I am ___very biased___ toward the "Red Hat family" of distributions and everything you see here has been tested on Fedora (usually, latest) or the latest releases of RHEL or CentOS. The reason for the "latest" has (or may have) to do with capabilities found in the kernels;  
 Also, my main job is quite apart from this activity, hence the amount of time I can dedicate to this project is not guaranteed... (no, I do _not_ think I am unique in this regard).
 
-### [... on, to the next stage...](environment/README.md)
+### [... on, to the next stage...](environment)
 
