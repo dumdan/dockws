@@ -12,7 +12,7 @@ myUid=$(id -u)
 myName=$(id -un)
 
 pushd ${target} >/dev/null 2>&1 || { \
-	echo -e "Directory Not Found - \"${target}\" x21 Exiting..."; \
+	echo -e "Directory Not Found - \"${target}\" \x21 Exiting..."; \
 	exit 1 ; }
 cat << EOF > Dockerfile
 FROM ${myName}/${baseOsName}
