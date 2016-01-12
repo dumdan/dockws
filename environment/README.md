@@ -41,7 +41,7 @@ You should, now, be able to "talk" to the Docker daemon _"as yourself"_. Try (at
 ## Target directory tree
 Just to give you an idea of the (possible) directory & file hierarchy which we are working towards:  
 
-![dir. tree](../../blob/mastertree01.svg)
+![dir. tree](../tree01.svg)
 
 **./**  
 ├── README.md  
