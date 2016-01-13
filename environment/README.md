@@ -123,7 +123,7 @@ Finally, **let's build that Docker image:**
 ```
     <repo-name>/<image-name>:<tag>
 ```
-(it so happens that the Libre Office version was "5.0.42" when I did this !)
+(it so happens that the Libre Office version was "5.0.4.2" when I did this !)
 
 ## Run your dockerized application(s)
 For this context - running desktop  applications - there shouldn't be many security concerns. In most cases, the desktop user is, also, (one of) the administrators of the machine.
