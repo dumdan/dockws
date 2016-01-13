@@ -50,7 +50,7 @@ Just to give you an idea of the (possible) directory & file hierarchy which we a
    [<username>@<hostname> ~]$ cd f23
    [<username>@<hostname> ~]$ vim Dockerfile
    ```
-Of course, for RHEL and CentOS, **dnf** changes to **yum**, in the `Dockerfile`, below.  
+Of course, for RHEL and CentOS, **dnf** should be substituted by **yum**, in the `Dockerfile`, below.  
 _---- [Dockerfile](f23/Dockerfile) contents, in the **f23** directory ----_  
 (**Please** don't forget to change _"Your Name"_ and _"your email address"_ with the actual values)
    ```
@@ -103,7 +103,7 @@ and, of course, run it:
 ```
 This will result in the generation of the file [**f23/Dockerfile**](f23/Dockerfile).
 
-Finally, **let's build that image:**
+Finally, **let's build that Docker image:**
 ```
    [<username>@<hostname> ~]$ docker build -t <username>/f23_libreoffice:5042 libreoffice
 ```
