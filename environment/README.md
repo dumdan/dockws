@@ -69,9 +69,9 @@ _---- [Dockerfile](f23/Dockerfile) contents, in the **f23** directory ----_
    CMD ["sleep", "infinity"]
    ```
 Now, for the **actual build** (you're still, in the "f23" directory):
-   ```
+```
    [<username>@<hostname> f23]$ docker build -t <username>/f23 .
-   ```
+```
 ***Please, note*** the **dot** at the end of that command. It _is_ important !  
 (You do not, really, have to prefix the image with your **\<username\>**, but you **should** do something of that kind - please, see the docs for details)
 
@@ -101,28 +101,28 @@ And, of course, I had to choose a pretty _"heavy"_ application... ***Libre Offic
 (#sarcasm)
 
 To build the image, go up to the parent directory
-	```
+```
 	[<username>@<hostname> f23]$ cd ../
 	[<username>@<hostname> environment]$ 
-	```
+```
 and **customize** (fill-in your specific details) the script [**`mkdf-loff.sh`**](./mkdf-loff.sh).
 Then, run it:
-	```
+```
 	[<username>@<hostname> environment]$ ./mkdf-loff.sh
-	```
+```
 This will result in the generation of the file [**f23/Dockerfile**](f23/Dockerfile).
 
 Finally, **let's build that Docker image:**
-	```
+```
 	[<username>@<hostname> environment]$ docker build -t <username>/f23_libreoffice:5042 libreoffice
-	```
+```
 
 **Note** the build command looks a little different, this time:
 - the "build directory" is mentioned explicitly (`libreoffice`)
 - the image name has the complete form:  
-    ```
+```
     <repo-name>/<image-name>:<tag>
-    ```  
+```  
     (it so happens that the Libre Office version was "5.0.42" when I did this !)
 
 ## Run your dockerized application(s)
@@ -159,12 +159,12 @@ The result **should be**... Libre Office runing !
 As you can see, I restricted the memory this container may use to 1G and named the running instance **`libreoffice`**.
 
 You may also, at this stage, see the container running with **`docker ps`**:
-   ```
+```
    [daniel@oryxdd ~]$ docker ps
    CONTAINER ID        IMAGE                         COMMAND                  CREATED              STATUS              PORTS               NAMES
    a9f86a372bf5        daniel/f23_libreoffice:5042   "/usr/bin/libreoffice"   About a minute ago   Up About a minute                       libreoffice
    [daniel@oryxdd ~]$ 
-   ```
+```
 The **`libreoffice.sh`** script **may be copied somewhere sane**, like - you guessed it - **`/usr/local/bin`** and (if the application was not installed on the host machine) the script **may be renamed** to plain **`libreoffice`**.
 
 ## **Don't forget** to change **`<username>`** with your actual **username**, in the script !
