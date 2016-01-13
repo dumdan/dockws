@@ -167,5 +167,5 @@ a9f86a372bf5        daniel/f23_libreoffice:5042   "/usr/bin/libreoffice"   About
 ```
 The **`libreoffice.sh`** script **may be copied somewhere sane**, like - you guessed it - **`/usr/local/bin`** and (if the application was not installed on the host machine) the script **may be renamed** to plain **`libreoffice`**.
 
-### **Don't forget** to change **`<username>`** with your actual **username**, in the script !
+**Don't forget** to change **`<username>`** with your actual **username**, in the script !
 
