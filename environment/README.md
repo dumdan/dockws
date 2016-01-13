@@ -45,16 +45,16 @@ Just to give you an idea of the (possible) directory & file hierarchy which we a
 
 ![dir. tree](../tree01.png)
 
+In case you cloned this project locally (`git clone https://github.com/dumdan/dockws.git`) in your home directory you'd have the whole tree there, already.
 
 ## Build your own - ***local*** - Fedora Docker image
    ```
-   [<username>@<hostname> ~]$ mkdir f23
-   [<username>@<hostname> ~]$ cd f23
-   [<username>@<hostname> ~]$ vim Dockerfile
+   [<username>@<hostname> ~]$ cd dockws/environment/f23
+   [<username>@<hostname> f23]$ vim Dockerfile
    ```
 Of course, for RHEL and CentOS, **dnf** should be substituted by **yum**, in the `Dockerfile`, below.  
 _---- [Dockerfile](f23/Dockerfile) contents, in the **f23** directory ----_  
-(**Please** don't forget to change _"Your Name"_ and _"your email address"_ with the actual values)
+(It would be good to change _"Your Name"_ and _"your email address"_ with **your** actual values)
    ```
    FROM fedora
    MAINTAINER Your Name <your email address>
@@ -70,23 +70,25 @@ _---- [Dockerfile](f23/Dockerfile) contents, in the **f23** directory ----_
    ```
 Now, for the **actual build** (you're still, in the "f23" directory):
    ```
-   [<username>@<hostname> ~]$ docker build -t <username>/f23 .
+   [<username>@<hostname> f23]$ docker build -t <username>/f23 .
    ```
 ***Please, note*** the **dot** at the end of that command. It _is_ important !  
 (You do not, really, have to prefix the image with your **\<username\>**, but you **should** do something of that kind - please, see the docs for details)
 
-The build is going to take a while and involves downloading and installing quite a few __rpm__ packages.  
+The build is going to take a while since it may download and install quite a few __rpm__ packages.  
 When finished, you should be able to see the new image in the local Docker cache:
 ```
-[<username>@<hostname> ~]$ docker images
+[<username>@<hostname> f23]$ docker images
 REPOSITORY                  TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 <username>/f23              latest              3129cde806e2        6 hours ago         352 MB
 <none>                      <none>              62e7ea3bf76c        9 days ago          352.3 MB
 docker.io/fedora            latest              597717fc21bd        7 weeks ago         204 MB
-[<username>@<hostname> ~]$ 
+[<username>@<hostname> f23]$ 
 ```
-The actual listing will look a little different... but you get the idea. Here's what it was in ***my case:***
+The actual listing will look a little different... but you get the idea.  
+Here's what it was in ***my case:***
 ```
+[daniel@oryxdd ~]$ docker images
 REPOSITORY                TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 daniel/f23                latest              3129cde806e2        23 hours ago        352 MB
 <none>                    <none>              62e7ea3bf76c        9 days ago          352.3 MB
@@ -98,25 +100,30 @@ docker.io/fedora          latest              597717fc21bd        7 weeks ago   
 And, of course, I had to choose a pretty _"heavy"_ application... ***Libre Office !***  
 (#sarcasm)
 
-To build the image, please **customize** (fill-in your specific details) the script [**`mkdf-loff.sh`**](./mkdf-loff.sh)
-and, of course, run it:
-```
-[<username>@<hostname> ~]$ ./mkdf-loff.sh
-```
+To build the image, go up to the parent directory
+	```
+	[<username>@<hostname> f23]$ cd ../
+	[<username>@<hostname> environment]$ 
+	```
+and **customize** (fill-in your specific details) the script [**`mkdf-loff.sh`**](./mkdf-loff.sh).
+Then, run it:
+	```
+	[<username>@<hostname> environment]$ ./mkdf-loff.sh
+	```
 This will result in the generation of the file [**f23/Dockerfile**](f23/Dockerfile).
 
 Finally, **let's build that Docker image:**
-```
-   [<username>@<hostname> ~]$ docker build -t <username>/f23_libreoffice:5042 libreoffice
-```
+	```
+	[<username>@<hostname> environment]$ docker build -t <username>/f23_libreoffice:5042 libreoffice
+	```
 
-You will notice that, this time, the build command is a little different:
+**Note** the build command looks a little different, this time:
 - the "build directory" is mentioned explicitly (`libreoffice`)
 - the image name has the complete form:  
     ```
     <repo-name>/<image-name>:<tag>
     ```  
-    (it so happens that the LibreOffice version is "5.0.42" !)
+    (it so happens that the Libre Office version was "5.0.42" when I did this !)
 
 ## Run your dockerized application(s)
 For this context - running desktop  applications - there shouldn't be many security concerns. In most cases, the desktop user is, also, (one of) the administrators of the machine.
@@ -128,10 +135,10 @@ Keep in mind, nonetheless, that the container **does** share the `X11 connection
 Back to business... we were at the _running the application_ stage.  
 Assuming you are, still, in the **`environment`** directory, you may try runing the container by executing the script [**`libreoffice.sh`**](./usr-local-bin/libreoffice.sh):
     ```
-    [<username>@<hostname> ~]$ usr-local-bin/libreoffice.sh
+    [<username>@<hostname> environment]$ usr-local-bin/libreoffice.sh
     ```
 which is just a simple wrapper for the command:
-   ```
+	```
 	docker run  --rm \
    	--memory="1g" \
    	-v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -141,8 +148,8 @@ which is just a simple wrapper for the command:
    	-h "$(hostname -s)" \
    	--net "none" \
    	--name libreoffice \
-   	daniel/f23_libreoffice:5042 $@ &
-   ```
+   	<username>/f23_libreoffice:5042 $@ &
+	```
 The result **should be**... Libre Office runing !  
 (and a few error messages related to the inability to "talk" to the desktop manager)
 
@@ -155,6 +162,7 @@ You may also, at this stage, see the container running with **`docker ps`**:
    a9f86a372bf5        daniel/f23_libreoffice:5042   "/usr/bin/libreoffice"   About a minute ago   Up About a minute                       libreoffice
    [daniel@oryxdd ~]$ 
    ```
-The **`libreoffice.sh`** script **may be copied somewhere sane**, like - you guessed it - **`/usr/local/bin`** and - if the application was not installed on the host machine - the script **may be renamed** to plain **`libreoffice`**.
+The **`libreoffice.sh`** script **may be copied somewhere sane**, like - you guessed it - **`/usr/local/bin`** and (if the application was not installed on the host machine) the script **may be renamed** to plain **`libreoffice`**.
 
+**Don't forget** to change **`<username>`** with your actual **username**, in the script !
 
