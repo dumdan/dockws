@@ -1,10 +1,10 @@
 ﻿***(Work in progress)***
 # Set-up your environment
 Summary:
-- [Install Docker](#Install Docker)
-- [Convenient Docker](#Convenient Docker) command access
-- [Target directory tree](#Target directory tree)
-- [Build your own](#Build your own) Fedora Docker image
+- [Install Docker](#install-docker)
+- [Convenient Docker](#convenient-docker) command access
+- [Target directory tree](#target-directory-tree)
+- [Build your own](#build-your-own) Fedora Docker image
 
 ## Install Docker - unless already done
 Use **dnf** (Fedora) or **yum** (RHEL, CentOS), as appropriate:  
