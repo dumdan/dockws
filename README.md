@@ -24,7 +24,7 @@ Very often, we need / want to keep the "base system" clean (_and working_), whil
 - changes in the configuration files that break the existing (and, maybe, _supported_) system configuration, or
 - relaxing the security requirements.  
 
-The most often heard response this question is **"use a virtual machine, and you're done!"**  
+The most often heard response to this question is **"use a virtual machine, and you're done!"**  
 _Except..._ **that** doesn't always work very well:
 - if the "host" is a machine not very "capable" - say, for example, a run-of-the-mill laptop (your **workstation**) - you **will** feel the virtualization overhead piling-up pretty quickly;
 - when the application needs access to some devices of the host in a very "controlled" mode, sometimes with dedicated, nonstandard, device drivers;
