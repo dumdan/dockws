@@ -158,14 +158,14 @@ The result **should be**... Libre Office runing !
 
 As you can see, I restricted the memory this container may use to 1G and named the running instance **`libreoffice`**.
 
-You may also, at this stage, see the container running with **`docker ps`**:
+You may also, at this stage, see the container running with **`docker ps`**. In my case, this is the result:
 ```
-   [daniel@oryxdd ~]$ docker ps
-   CONTAINER ID        IMAGE                         COMMAND                  CREATED              STATUS              PORTS               NAMES
-   a9f86a372bf5        daniel/f23_libreoffice:5042   "/usr/bin/libreoffice"   About a minute ago   Up About a minute                       libreoffice
-   [daniel@oryxdd ~]$ 
+[daniel@oryxdd ~]$ docker ps
+CONTAINER ID        IMAGE                         COMMAND                  CREATED              STATUS              PORTS               NAMES
+a9f86a372bf5        daniel/f23_libreoffice:5042   "/usr/bin/libreoffice"   About a minute ago   Up About a minute                       libreoffice
+[daniel@oryxdd ~]$ 
 ```
 The **`libreoffice.sh`** script **may be copied somewhere sane**, like - you guessed it - **`/usr/local/bin`** and (if the application was not installed on the host machine) the script **may be renamed** to plain **`libreoffice`**.
 
-## **Don't forget** to change **`<username>`** with your actual **username**, in the script !
+### **Don't forget** to change **`<username>`** with your actual **username**, in the script !
 
