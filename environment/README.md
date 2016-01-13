@@ -4,7 +4,7 @@ Summary:
 - [Install Docker](#install-docker)
 - [Convenient Docker](#convenient-docker) command access
 - [Target directory tree](#target-directory-tree)
-- [Build your own](#build-your-own) Fedora Docker image
+- [**Build your own**](#build-your-own) Fedora Docker image
 
 ## Install Docker - unless already done
 Use **dnf** (Fedora) or **yum** (RHEL, CentOS), as appropriate:  
@@ -44,7 +44,7 @@ Just to give you an idea of the (possible) directory & file hierarchy which we a
 ![dir. tree](../tree01.png)
 
 
-## Build your own - ***local*** - Fedora Docker image:
+## Build your own - ***local*** - Fedora Docker image
    ```
    [<username>@<hostname> ~]$ mkdir f23
    [<username>@<hostname> ~]$ cd f23
@@ -92,7 +92,7 @@ docker.io/fedora          latest              597717fc21bd        7 weeks ago   
 [daniel@oryxdd ~]$ 
 ```
 
-## The application image
+# The application image
 And, of course, I had to choose a pretty _"heavy"_ application... ***Libre Office !***  
 (#sarcasm)
 
@@ -115,6 +115,17 @@ You will notice that, this time, the build command is a little different:
     <repo-name>/<image-name>:<tag>
     ```  
     (it so happens that the LibreOffice version is "5.0.42" !)
+
+## Run your dockerized application(s)
+For this context - running desktop  applications - there shouldn't be many security concerns. In most cases, the desktop user is, also, (one of) the administrators of the machine.
+
+Running the applications (the corresponding Docker containers) depends _a lot_ on the nature of the applications.
+For the particular case of Libre Office, __I chose__ to restrict it's network access completely. This further aleviates most security concerns.  
+Keep in mind, nonetheless, that the container **does** share the `X11 connection` and such a setup is, by default, vulnerable to potential container break-out.
+
+Back to business... we were at the _running the application_ stage.  
+Assuming you are, still, in the **`environment`** directory, you may try runing it by executing the script:
+
 
 
 
