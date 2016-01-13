@@ -134,22 +134,24 @@ Keep in mind, nonetheless, that the container **does** share the `X11 connection
 
 Back to business... we were at the _running the application_ stage.  
 Assuming you are, still, in the **`environment`** directory, you may try runing the container by executing the script [**`libreoffice.sh`**](./usr-local-bin/libreoffice.sh):
-    ```
-    [<username>@<hostname> environment]$ usr-local-bin/libreoffice.sh
-    ```
-which is just a simple wrapper for the command:  
-    ```
+
+```
+   [<username>@<hostname> environment]$ usr-local-bin/libreoffice.sh
+```
+which is just a simple wrapper for the command:
+
+``` 
     docker run  --rm \
-    	--memory="1g" \
-    	-v /tmp/.X11-unix:/tmp/.X11-unix \
-    	-v /etc/machine-id:/etc/machine-id:ro \
-    	-v /home/daniel:/home/daniel:z \
-    	-e DISPLAY=unix$DISPLAY \
-    	-h "$(hostname -s)" \
-    	--net "none" \
-    	--name libreoffice \
-   	<username>/f23_libreoffice:5042 $@ &
-   ```
+      --memory="1g" \
+      -v /tmp/.X11-unix:/tmp/.X11-unix \
+      -v /etc/machine-id:/etc/machine-id:ro \
+      -v /home/daniel:/home/daniel:z \
+      -e DISPLAY=unix$DISPLAY \
+      -h "$(hostname -s)" \
+      --net "none" \
+      --name libreoffice \
+      <username>/f23_libreoffice:5042 $@ &
+```
    
 The result **should be**... Libre Office runing !  
 (and a few error messages related to the inability to "talk" to the desktop manager)
