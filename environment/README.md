@@ -119,7 +119,7 @@ Finally, **let's build that Docker image:**
 
 **Note** the build command looks a little different, this time:
 - the "build directory" is mentioned explicitly (`libreoffice`)
-- the image name has the complete form:  
+- the ***image name*** has the complete form:  
 ```
     <repo-name>/<image-name>:<tag>
 ```
