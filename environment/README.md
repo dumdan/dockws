@@ -33,7 +33,7 @@ _(again, depending on your ***sudo*** settings, you may be asked for ***your*** 
 Now, **log out** and **log back in !** (you need to "pick-up" the group membership in the current log-in session).  
 If running in one of the incarnations of "The X terminal" (MATE, GNOME) it **may** be enough to close it (**Ctrl-D**) and open a new one.  
 
-You should, now, be able to "talk" to the Docker daemon _"as yourself"_. Try (at least) this:  
+You should, now, be able to "talk" to the Docker daemon _"as yourself"_. Try (at least) this:
 
    ```
    [<username>@<hostname> ~]$ docker info
@@ -45,13 +45,13 @@ Just to give you an idea of the (possible) directory & file hierarchy which we a
 
 
 ## Build your own - ***local*** - Fedora Docker image:
-Of course, for RHEL and CentOS, **dnf** changes to **yum**, in the `Dockerfile`, below.
    ```
    [<username>@<hostname> ~]$ mkdir f23
    [<username>@<hostname> ~]$ cd f23
    [<username>@<hostname> ~]$ vim Dockerfile
    ```
----- [Dockerfile](f23/Dockerfile) contents, in the **f23** directory ----  
+Of course, for RHEL and CentOS, **dnf** changes to **yum**, in the `Dockerfile`, below.  
+_---- [Dockerfile](f23/Dockerfile) contents, in the **f23** directory ----_  
 (**Please** don't forget to change _"Your Name"_ and _"your email address"_ with the actual values)
 ```
 FROM fedora
