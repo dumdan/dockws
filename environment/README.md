@@ -53,19 +53,19 @@ Just to give you an idea of the (possible) directory & file hierarchy which we a
 Of course, for RHEL and CentOS, **dnf** changes to **yum**, in the `Dockerfile`, below.  
 _---- [Dockerfile](f23/Dockerfile) contents, in the **f23** directory ----_  
 (**Please** don't forget to change _"Your Name"_ and _"your email address"_ with the actual values)
-```
-FROM fedora
-MAINTAINER Your Name <your email address>
-RUN dnf install -y procps iputils && \
-	dnf -y update \
-	dnf clean all
-# You may, safely, ignore (comment-out) the next
-# COPY command. It reflects my VERY opinionated view
-# on how time should be displayed by the "ls" command:
-COPY zz-dd-colorls.sh /etc/profile.d/
-
-CMD ["sleep", "infinity"]
-```
+   ```
+   FROM fedora
+   MAINTAINER Your Name <your email address>
+   RUN dnf install -y procps iputils && \
+   	dnf -y update \
+   	dnf clean all
+   # You may, safely, ignore (comment-out) the next
+   # COPY command. It reflects my VERY opinionated view
+   # on how time should be displayed by the "ls" command:
+   COPY zz-dd-colorls.sh /etc/profile.d/
+   
+   CMD ["sleep", "infinity"]
+   ```
 Now, for the **actual build** (you're still, in the "f23" directory):
    ```
    [<username>@<hostname> ~]$ docker build -t <username>/f23 .
@@ -94,42 +94,9 @@ docker.io/fedora          latest              597717fc21bd        7 weeks ago   
 
 ## The application image
 And, of course, I had to choose a pretty _"heavy"_ application... ***Libre Office !***  
-(#sarcasm))
+(#sarcasm)
 
 To build the image, please **customize** (fill-in your specific details) the script [**`mkdf-loff.sh`**](./mkdf-loff.sh)
-```
-#!/bin/bash
-#
-
-target=${1}
-target="${target:=libreoffice}"
-baseOsName="f23"
-fullName="Your Name"
-email="email@domain.tld"
-
-myGid=$(id -g)
-myUid=$(id -u)
-myName=$(id -un)
-
-pushd ${target} >/dev/null 2>&1 || { \
-	echo -e "Directory Not Found - \"${target}\" x21 Exiting..."; \
-	exit 1 ; }
-cat << EOF > Dockerfile
-FROM ${myName}/${baseOsName}
-MAINTAINER ${fullName} <${email}>
-RUN dnf install -y libreoffice && 
-	dnf clean all
-
-COPY zz-dd-colorls.sh /etc/profile.d/
-RUN groupadd -g ${myGid} ${myName} && \
-	useradd -g ${myGid} -u ${myUid} \
-	-d /home/${myName} -s /bin/bash \
-	-c "${fullName}" ${myName}
-
-USER ${myName}
-ENTRYPOINT ["/usr/bin/libreoffice"]
-EOF
-```
 and, of course, run it:
 ```
 [<username>@<hostname> ~]$ ./mkdf-loff.sh
