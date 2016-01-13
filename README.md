@@ -1,15 +1,17 @@
 # dockws
 # Docker-based Workstation configuration(s)
 (...After a long absence from GitHub...)  
-This is my long-overdue attempt at formalizing a "use pattern" I have encountered many times and, _I know_, others have, as well.  
-For now, it's just a start - I will continue to add to it, as time permits.  
+I know, ***I am not the first to do this*** - thank you, **Jessie Frazelle** and many others!
+
+This is my long-overdue attempt at formalizing this "use-pattern" on the Red Hat family of distributions.  
+It's just a start - I will continue to add to it, as time permits.  
 
 My setup is, by no means, complete, hence here are some  
   
 Caveats:
-- I made no attempt to use the DBus for overall desk-top integration (well, I actually did try but it's not easy);
-- I am trying _first and foremost_ to ***isolate*** the various applications each in their _containerized sandbox_, as opposed to running the whole desktop in a container;
-- The setup I am presenting may, very well, turn into examples of how to solve the same "problems" for other applications.
+- I made no attempt to use the DBus for overall desk-top integration (well, I actually did do it, but it involves multiple containers = increased complexity);
+- The idea is _first and foremost_ to ***isolate*** the various applications each in their _containerized sandbox_, as opposed to running the whole desktop in a container;
+- This setup can, very well, turn into examples of how to solve the same "problems" for other applications.
 
 ## Pattern
 ### **Premise**
@@ -22,7 +24,7 @@ Very often, we need / want to keep the "base system" clean (_and working_), whil
 - changes in the configuration files that break the existing (and, maybe, _supported_) system configuration, or
 - relaxing the security requirements.  
 
-The most often heard response to such a situation is **"use a virtual machine, and you're done!"**  
+The most often heard response this question is **"use a virtual machine, and you're done!"**  
 _Except..._ **that** doesn't always work very well:
 - if the "host" is a machine not very "capable" - say, for example, a run-of-the-mill laptop (your **workstation**) - you **will** feel the virtualization overhead piling-up pretty quickly;
 - when the application needs access to some devices of the host in a very "controlled" mode, sometimes with dedicated, nonstandard, device drivers;
