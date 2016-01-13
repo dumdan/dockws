@@ -123,13 +123,13 @@ Finally, **let's build that Docker image:**
 ```
     <repo-name>/<image-name>:<tag>
 ```
-(it so happens that the Libre Office version was "5.0.4.2" when I did this !)
+(it so happens that the LibreOffice version was "5.0.4.2" when I did this !)
 
 ## Run your dockerized application(s)
 For this context - running desktop  applications - there shouldn't be many security concerns. In most cases, the desktop user is, also, (one of) the administrators of the machine.
 
 Running the applications (the corresponding Docker containers) depends _a lot_ on the nature of the applications.
-For the particular case of Libre Office, __I chose__ to restrict it's network access completely. This further aleviates most security concerns.  
+For the particular case of LibreOffice, __I chose__ to restrict it's network access completely. This further aleviates most security concerns.  
 Keep in mind, nonetheless, that the container **does** share the `X11 connection` and such a setup is, by default, vulnerable to potential container break-out.
 
 Back to business... we were at the _running the application_ stage.  
@@ -153,7 +153,7 @@ which is just a simple wrapper for the command:
       <username>/f23_libreoffice:5042 $@ &
 ```
    
-The result **should be**... Libre Office runing !  
+The result **should be**... LibreOffice runing !  
 (and a few error messages related to the inability to "talk" to the desktop manager)
 
 As you can see, I restricted the memory this container may use to 1G and named the running instance **`libreoffice`**.
