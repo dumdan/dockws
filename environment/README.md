@@ -6,7 +6,7 @@ Summary:
 - [Target directory tree](#target-directory-tree)
 - [Build your own](#build-your-own) Fedora Docker image
 - [The application image](#the-application-image)
-- [Run your dockerized application(s)](#run-your-dockerized-application)
+- [Run your dockerized application(s)](#run-your-dockerized-applications)
 
 ## Install Docker - unless already done
 Use **dnf** (Fedora) or **yum** (RHEL, CentOS), as appropriate:  
@@ -139,12 +139,14 @@ which is just a simple wrapper for the command:
    	-v /home/daniel:/home/daniel:z \
    	-e DISPLAY=unix$DISPLAY \
    	-h "$(hostname -s)" \
-      --net "none" \
+   	--net "none" \
    	--name libreoffice \
-	  	daniel/f23_libreoffice:5042 $@ &
+   	daniel/f23_libreoffice:5042 $@ &
    ```
 The result **should be**... Libre Office runing !  
 (and a few error messages related to the inability to "talk" to the desktop manager)
+
+As you can see, I restricted the memory this container may use to 1G and named the running instance **`libreoffice`**.
 
 You may also, at this stage, see the container running with **`docker ps`**:
    ```
@@ -153,6 +155,6 @@ You may also, at this stage, see the container running with **`docker ps`**:
    a9f86a372bf5        daniel/f23_libreoffice:5042   "/usr/bin/libreoffice"   About a minute ago   Up About a minute                       libreoffice
    [daniel@oryxdd ~]$ 
    ```
-The **`libreoffice.sh`** script **may be copied somewhere sane**, like - you guessed it - **`/usr/local/bin`** and - if the application was not installed on the host machine, the script **may be renamed** to plain **`libreoffice`**.
+The **`libreoffice.sh`** script **may be copied somewhere sane**, like - you guessed it - **`/usr/local/bin`** and - if the application was not installed on the host machine - the script **may be renamed** to plain **`libreoffice`**.
 
 
