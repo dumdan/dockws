@@ -4,7 +4,9 @@ Summary:
 - [Install Docker](#install-docker)
 - [Convenient Docker](#convenient-docker) command access
 - [Target directory tree](#target-directory-tree)
-- [**Build your own**](#build-your-own) Fedora Docker image
+- [Build your own](#build-your-own) Fedora Docker image
+- [The application image](#the-application-image)
+- [Run your dockerized application(s)](#run-your-dockerized-application)
 
 ## Install Docker - unless already done
 Use **dnf** (Fedora) or **yum** (RHEL, CentOS), as appropriate:  
@@ -124,8 +126,33 @@ For the particular case of Libre Office, __I chose__ to restrict it's network ac
 Keep in mind, nonetheless, that the container **does** share the `X11 connection` and such a setup is, by default, vulnerable to potential container break-out.
 
 Back to business... we were at the _running the application_ stage.  
-Assuming you are, still, in the **`environment`** directory, you may try runing it by executing the script:
+Assuming you are, still, in the **`environment`** directory, you may try runing the container by executing the script [**`libreoffice.sh`**](./usr-local-bin/libreoffice.sh):
+    ```
+    [<username>@<hostname> ~]$ usr-local-bin/libreoffice.sh
+    ```
+which is just a simple wrapper for the command:
+   ```
+	docker run  --rm \
+   	--memory="1g" \
+   	-v /tmp/.X11-unix:/tmp/.X11-unix \
+   	-v /etc/machine-id:/etc/machine-id:ro \
+   	-v /home/daniel:/home/daniel:z \
+   	-e DISPLAY=unix$DISPLAY \
+   	-h "$(hostname -s)" \
+      --net "none" \
+   	--name libreoffice \
+	  	daniel/f23_libreoffice:5042 $@ &
+   ```
+The result **should be**... Libre Office runing !  
+(and a few error messages related to the inability to "talk" to the desktop manager)
 
-
+You may also, at this stage, see the container running with **`docker ps`**:
+   ```
+   [daniel@oryxdd ~]$ docker ps
+   CONTAINER ID        IMAGE                         COMMAND                  CREATED              STATUS              PORTS               NAMES
+   a9f86a372bf5        daniel/f23_libreoffice:5042   "/usr/bin/libreoffice"   About a minute ago   Up About a minute                       libreoffice
+   [daniel@oryxdd ~]$ 
+   ```
+The **`libreoffice.sh`** script **may be copied somewhere sane**, like - you guessed it - **`/usr/local/bin`** and - if the application was not installed on the host machine, the script **may be renamed** to plain **`libreoffice`**.
 
 
